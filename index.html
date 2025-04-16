@@ -15,25 +15,28 @@
         <h1>What do you want to watch?</h1>
         <div class="box">
 
-            <button id="search-btn" class="search-btn">SEARCH</button>
+            <div class="emojis">
+                <button class="btn-emoji">&#128525;</button> <!-- 😍 -->
+                <button class="btn-emoji">&#128148;</button> <!-- 💔 -->
+                <button class="btn-emoji">&#128081;</button> <!-- 👑 -->
+                <button class="btn-emoji">&#128143;</button> <!-- 💏 -->
+                <button class="btn-emoji">&#127807;</button> <!-- 🌿 -->
+                <button class="btn-emoji">&#127963;</button> <!-- 🏛 -->
+                <button class="btn-emoji">&#128481;</button> <!-- ⚔ -->
+                <button class="btn-emoji">&#128269;</button> <!-- 🔎 -->
+                <button class="btn-emoji">&#128149;</button> <!-- 💕 -->
+                <button class="btn-emoji">&#128514;</button> <!-- 😂 -->  
+            </div>
+
+            <div class="selected-emojis">   
+                <p>Your selected emojis</p>
+                <button id="search-btn" class="search-btn">SEARCH</button>
+            </div>
+            
+
               
         </div>
 
-        <div class="emojis box">
-            <button>&#128514;</button> <!-- 😂 -->
-            <button>&#128525;</button> <!-- 😍 -->
-            <button>&#128148;</button> <!-- 💔 -->
-            <button>&#128081;</button> <!-- 👑 -->
-            <button>&#128143;</button> <!-- 💏 -->
-            <button>&#127807;</button> <!-- 🌿 -->
-            <button>&#127963;</button> <!-- 🏛 -->
-            <button>&#128481;</button> <!-- ⚔ -->
-            <button>&#128269;</button> <!-- 🔎 -->
-            <button>&#128149;</button> <!-- 💕 -->
-
-            
-        </div>
-    
 
         <script>
             document.getElementById('search-btn').addEventListener('click', function() {
