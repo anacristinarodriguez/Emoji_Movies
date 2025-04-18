@@ -12,7 +12,7 @@
     </head>
     <body background="src/pexels-alscre-2847648.jpg">
 
-        <h1>What do you want to watch?</h1>
+        <h1 class="title">What do you want to watch?</h1>
         <div class="box">
 
             <div class="emojis">
@@ -26,22 +26,50 @@
                 <button class="btn-emoji">&#128269;</button> <!-- 🔎 -->
                 <button class="btn-emoji">&#128149;</button> <!-- 💕 -->
                 <button class="btn-emoji">&#128514;</button> <!-- 😂 -->  
-            </div>
-
-            <div class="selected-emojis">   
-                <p>Your selected emojis</p>
+            </div>   
+            
+            <div class="selected-emojis">
+                <div id="emoji-box" class="emoji-box"></div> <!-- Selected emojis will show here -->
                 <button id="search-btn" class="search-btn">SEARCH</button>
             </div>
-            
 
-              
+            <p id="limit-msg" class="limit-msg"></p>
+
+            
         </div>
 
-
+        
         <script>
-            document.getElementById('search-btn').addEventListener('click', function() {
-                window.location.href = "find.html";  // Redirect to find.html when clicked
+            //document.getElementById('search-btn').addEventListener('click', function() {
+            //    window.location.href = "find.html";  // Redirect to find.html when clicked
+            //});
+
+            const emojiBox = document.getElementById('emoji-box');
+            const limitMsg = document.getElementById('limit-msg');
+            const selectedEmojis=[];
+
+            document.querySelectorAll('.btn-emoji').forEach(emoji => {
+                emoji.addEventListener('click', function() {
+
+                    const emojiChar = this.innerHTML;
+
+                    if (selectedEmojis.includes(emojiChar)) {
+                        limitMsg.textContent = "You have already selected this emoji.";
+                        return;
+                    }
+
+                    if (selectedEmojis.length < 3) {
+                        selectedEmojis.push(this.innerHTML);
+                        const selectedEmoji = document.createElement('span');
+                        selectedEmoji.classList.add('selected-emoji');
+                        selectedEmoji.innerHTML = this.innerHTML;
+                        emojiBox.appendChild(selectedEmoji);
+                    } else {
+                        limitMsg.textContent = "You can only select up to 3 emojis.";
+                    }
+                });
             });
+
         </script>
         <script src="script.js"></script>
     </body>
