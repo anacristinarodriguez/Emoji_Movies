@@ -7,6 +7,7 @@ from fastapi.staticfiles import StaticFiles
 
 
 
+
 load_dotenv()
 app = FastAPI()
 app.mount("/", StaticFiles(directory="app/static", html=True), name="static")

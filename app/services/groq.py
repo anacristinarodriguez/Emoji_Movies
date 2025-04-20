@@ -1,6 +1,12 @@
 import os
 import requests
 
+import logging
+
+logger = logging.getLogger(__name__)
+logging.basicConfig(level=logging.INFO)
+
+
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
 def get_film_suggestion_from_emojis(emojis: str) -> str:
@@ -19,4 +25,5 @@ def get_film_suggestion_from_emojis(emojis: str) -> str:
     )
 
     result = response.json()
+    logger.info("Groq response: %s", response.text)
     return result["choices"][0]["message"]["content"].strip()

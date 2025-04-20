@@ -73,29 +73,6 @@ h1{
 }
 
 .emojis {
-<<<<<<< HEAD:app/static/src/styles.css
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); /* 4 columnas */
-    gap: 20px;
-    max-width: 600px;
-    max-height: 300px;
-    margin-top: -40px;
-    padding: 10px;
-    background-color: rgba(255, 255, 255, 0.85);
-    border-radius: 15px;
-  }
-  
-  .emojis button {
-    font-size: 60px;
-    text-align: center;
-    cursor: pointer;
-    border: none;
-    background: none;
-    transition: transform 0.2s ease;
-    margin: 5px;
-    font-family: "Segoe UI Emoji", "Noto Color Emoji", "Apple Color Emoji", sans-serif;
-  }
-=======
   display: flex;
   gap: 20px;
   padding: 10px;
@@ -113,14 +90,10 @@ h1{
   margin: 0px;
   font-family: "Segoe UI Emoji", "Noto Color Emoji", "Apple Color Emoji", sans-serif;
 }
->>>>>>> 3c73310 (add emojis to search bar):src/styles.css
   
 .emojis button:hover {
   transform: scale(1.2);
   }
-<<<<<<< HEAD:app/static/src/styles.css
-  
-=======
 
   .selected-emojis {
     display: flex;
@@ -139,4 +112,3 @@ h1{
   align-items: center;
   gap: 10px;
 }
->>>>>>> 3c73310 (add emojis to search bar):src/styles.css
