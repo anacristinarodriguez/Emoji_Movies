@@ -1,0 +1,142 @@
+
+body, html{
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  font-family: 'Poppins', sans-serif;
+}
+
+h1{ 
+    margin-top: 120px;
+    font-size: 58px;
+    color: white;
+    margin-bottom: 60px;
+  
+}
+
+.dm-serif-display-regular {
+    font-family: "DM Serif Display", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+/* .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+} */
+
+.box {
+  width: 800px;
+  height: 350px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  padding: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  flex-direction: column;
+}
+
+.title{
+  display: inline-block;
+  margin-top:50px;
+}
+
+.search-btn {
+  height: 50px; 
+  width: 115px; 
+  font-size: 25px;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  border: 2px solid black;
+  border-radius: 10px;
+  background-color: #f1f1f1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-btn:hover{
+  background-color: rgb(191, 189, 189);
+  margin-bottom: 0px;
+  height: 50px;
+}
+
+.emojis {
+<<<<<<< HEAD:app/static/src/styles.css
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 4 columnas */
+    gap: 20px;
+    max-width: 600px;
+    max-height: 300px;
+    margin-top: -40px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.85);
+    border-radius: 15px;
+  }
+  
+  .emojis button {
+    font-size: 60px;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    background: none;
+    transition: transform 0.2s ease;
+    margin: 5px;
+    font-family: "Segoe UI Emoji", "Noto Color Emoji", "Apple Color Emoji", sans-serif;
+  }
+=======
+  display: flex;
+  gap: 20px;
+  padding: 10px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+  
+  .emojis button {
+  font-size: 50px;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  background: none;
+  transition: transform 0.2s ease;
+  margin: 0px;
+  font-family: "Segoe UI Emoji", "Noto Color Emoji", "Apple Color Emoji", sans-serif;
+}
+>>>>>>> 3c73310 (add emojis to search bar):src/styles.css
+  
+.emojis button:hover {
+  transform: scale(1.2);
+  }
+<<<<<<< HEAD:app/static/src/styles.css
+  
+=======
+
+  .selected-emojis {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 50px; 
+  }
+  
+.emoji-box {
+  height: 50px;
+  width: 300px; 
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+>>>>>>> 3c73310 (add emojis to search bar):src/styles.css
