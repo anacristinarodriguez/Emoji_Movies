@@ -1,15 +1,24 @@
 from dotenv import load_dotenv
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware #Buse: added CORS middleware
+
 from app.routes.auth import router as auth_router
 from app.routes.recommend import router as recommend_router
 from fastapi.staticfiles import StaticFiles
 
-
-
-
-
 load_dotenv()
 app = FastAPI()
+
+#Buse: CORS CONFIG
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
 app.mount("/", StaticFiles(directory="app/static", html=True), name="static")
 app.include_router(auth_router, prefix="/auth")
 app.include_router(recommend_router, prefix="/recommend")

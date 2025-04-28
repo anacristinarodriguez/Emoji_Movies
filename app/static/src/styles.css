@@ -46,6 +46,68 @@ h1{
   flex-direction: column;
 }
 
+.tabs{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  gap: 40px;
+}
+
+.tab{
+  background: none;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  padding-bottom: 5px;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3 ease;
+}
+
+.tab.active{
+  border-color: black;
+}
+
+.tab:hover{
+  border-color: gray;
+}
+
+.input{
+  width: 80%;
+  padding: 15px;
+  margin: 10px 0;
+  border: 2px solid black;
+  border-radius: 12px;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  outline: none;
+}
+
+.input::placeholder{
+  color: #999;
+  font-weight: 500;
+}
+
+.login-btn {
+  width: 80%;
+  padding: 15px;
+  margin-top: 20px;
+  background-color: #fde7c2;
+  color: black;
+  border: 2px solid black;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-btn:hover{
+  background-color: #fcd8a3;
+}
+
 .title{
   display: inline-block;
   margin-top:50px;
@@ -112,3 +174,13 @@ h1{
   align-items: center;
   gap: 10px;
 }
+
+.login-container {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0px 4px 20px rgba(0,0,0,0.1);
+  padding: 40px 50px;
+  width: 350px;
+  text-align: center;
+}
+
