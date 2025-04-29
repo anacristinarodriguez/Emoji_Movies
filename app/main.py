@@ -1,15 +1,21 @@
 from dotenv import load_dotenv
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware #Buse: added CORS middleware
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 
 from app.routes.auth import router as auth_router
 from app.routes.recommend import router as recommend_router
-from fastapi.staticfiles import StaticFiles
+from app.database import engine
+from app import models
 
 load_dotenv()
 app = FastAPI()
 
-#Buse: CORS CONFIG
+# Create tables
+models.Base.metadata.create_all(bind=engine)
+
+# Buse: CORS config
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -18,11 +24,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
-app.mount("/", StaticFiles(directory="app/static", html=True), name="static")
+# Routers
 app.include_router(auth_router, prefix="/auth")
 app.include_router(recommend_router, prefix="/recommend")
 
+# Static files
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
+
 @app.get("/")
-def root():
-    return {"message": "Movie Recommender API is up!"}
+def read_index():
+    return FileResponse("app/static/index.html")

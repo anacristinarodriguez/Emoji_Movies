@@ -31,9 +31,10 @@ def get_current_user(token: str = Depends(lambda: None), db: Session = Depends(g
     except JWTError:
         raise credentials_exception
 
-@router.post("/")
+@router.post("/recommend/")
 def recommend_movie(data: EmojiInput, db: Session = Depends(get_db), user: User = Depends(get_current_user)):
     llama_prompt = f"Suggest one film based on these emojis: {data.emojis}. Just return the film name."
+    
     groq_response = requests.post(
         "https://api.groq.com/openai/v1/chat/completions",
         headers={
@@ -45,20 +46,25 @@ def recommend_movie(data: EmojiInput, db: Session = Depends(get_db), user: User 
             "messages": [{"role": "user", "content": llama_prompt}]
         }
     )
+    
+    if groq_response.status_code != 200:
+        raise HTTPException(status_code=500, detail="Groq API error")
+    
     film_title = groq_response.json()["choices"][0]["message"]["content"].strip()
 
-    imdb_response = requests.get(f"https://imdb-api.com/en/API/SearchMovie/{IMDB_API_KEY}/{film_title}")
-    items = imdb_response.json().get("results", [])
-    if not items:
-        raise HTTPException(status_code=404, detail="Film not found")
+    # MOCKING IMDB RESPONSE
+    top_film = {
+        "title": film_title,
+        "description": "A fantastic movie based on your selected emojis!",
+        "image": "https://via.placeholder.com/150"
+    }
 
-    top_film = items[0]
     new_pref = Preference(emojis=data.emojis, movie_title=top_film["title"], user_id=user.id)
     db.add(new_pref)
     db.commit()
 
     return {
         "title": top_film["title"],
-        "description": top_film.get("description", ""),
-        "image": top_film.get("image", ""),
+        "description": top_film["description"],
+        "image": top_film["image"],
     }
