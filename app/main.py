@@ -34,3 +34,7 @@ app.mount("/static", StaticFiles(directory="app/static"), name="static")
 @app.get("/")
 def read_index():
     return FileResponse("app/static/index.html")
+
+@app.get("/watch.html", response_class=FileResponse)
+def serve_watch():
+    return FileResponse("app/static/watch.html")
