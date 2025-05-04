@@ -26,7 +26,7 @@ app.add_middleware(
 
 # Routers
 app.include_router(auth_router, prefix="/auth")
-app.include_router(recommend_router, prefix="/recommend")
+app.include_router(recommend_router)
 
 # Static files
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
