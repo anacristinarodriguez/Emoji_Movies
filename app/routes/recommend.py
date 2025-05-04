@@ -6,11 +6,13 @@ from app.database import SessionLocal
 from app.models import User, Preference
 from app.utils import SECRET_KEY, ALGORITHM
 from app.schemas.recommend import EmojiInput
+from fastapi.security import OAuth2PasswordBearer
 
 router = APIRouter()
 
 GROQ_API_KEY = "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"
 IMDB_API_KEY = "your_imdb_api_key"
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
 def get_db():
     db = SessionLocal()

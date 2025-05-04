@@ -15,8 +15,6 @@ def get_db():
     finally:
         db.close()
 
-
-
 @router.post("/register")
 def register(user: UserCreate, db: Session = Depends(get_db)):
     db_user = db.query(User).filter(User.username == user.username).first()
@@ -35,3 +33,5 @@ def login(user: UserCreate, db: Session = Depends(get_db)):
         raise HTTPException(status_code=401, detail="Invalid credentials")
     token = create_access_token({"sub": user.username})
     return {"access_token": token, "token_type": "bearer"}
+
+

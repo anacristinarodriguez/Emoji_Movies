@@ -29,11 +29,13 @@
             </div>   
             
             <div class="selected-emojis">
-                <div id="emoji-box" class="emoji-box"></div> <!-- Selected emojis will show here -->
+                <div id="emoji-box" class="emoji-box"></div> 
                 <button id="search-btn" class="search-btn">SEARCH</button>
             </div>
 
             <p id="limit-msg" class="limit-msg"></p>
+
+            <div id="movie-recommendation"></div>
 
             
         </div>
@@ -43,6 +45,7 @@
             const emojiBox = document.getElementById('emoji-box');
             const limitMsg = document.getElementById('limit-msg');
             const selectedEmojis = [];
+            const movieRecommendation = document.getElementById('movie-recommendation');
             
             document.querySelectorAll('.btn-emoji').forEach(emoji => {
                 emoji.addEventListener('click', function () {
@@ -68,22 +71,38 @@
             
             document.getElementById('search-btn').addEventListener('click', async function () {
                 const emojis = selectedEmojis.join('');
+
+                if (emojis === ''){
+                    alert("Please select at least one emoji.");
+                    return;
+                }
             
                 try {
+                    const token = localStorage.getItem("token");
+
+                    if (!token) {
+                        alert("Please log in to get a recommendation.");
+                        return;
+                    }
+
                     const response = await fetch("http://localhost:8000/recommend/", {
                         method: "POST",
                         headers: {
-                            "Content-Type": "application/json"
-                            // You may need to add Authorization header here if auth is enforced
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${token}`
                         },
                         body: JSON.stringify({ emojis: emojis })
                     });
             
                     const data = await response.json();
-                    console.log("🎥 Movie recommendation:", data);
             
                     if (response.ok) {
-                        alert(`🎬 Recommended: ${data.title}\n📄 ${data.description}`);
+                        movieRecommendation.innerHTML = `
+                        <h3>Recommended Movie:</h3>
+                        <p><strong>${data.title}</strong></p>
+                        <p>${data.description}</p>
+                        <img src="${data.image}" alt="Movie Image" />
+                    `;
                     } else {
                         alert("❌ Error: " + data.detail);
                     }
@@ -93,7 +112,5 @@
                 }
             });
         </script>
-            
-        <script src="static/watch.js"></script>
     </body>
 </html>
