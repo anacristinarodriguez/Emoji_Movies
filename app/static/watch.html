@@ -1,3 +1,4 @@
+<!-- uvicorn app.main:app --reload -->
 <!DOCTYPE html>
 <html>
     <head>
@@ -45,7 +46,8 @@
 
         <div class="selected-emojis">
             <div id="emoji-box" class="emoji-box"></div> 
-            <button id="search-btn" class="search-btn">SEARCH</button>
+            <button id="search-btn" class="search-btn">Get Movie &#127916;</button>
+            <button id="new-search-btn"class="new-search-btn">New Search &#x21bb;</button>
         </div>
 
         <p id="limit-msg" class="limit-msg"></p>
@@ -54,11 +56,11 @@
     <!-- Modal -->
     <div id="recommendation-modal" class="modal">
         <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">&#10006;</button> <!-- ❌ -->
             <h3>🎬 Recommended Movie</h3>
             <p id="movie-title"><strong></strong></p>
             <p id="movie-description"></p>
             <img id="movie-image" src="" alt="Movie Image" />
-            <button class="close-btn" onclick="closeModal()">Close</button>
         </div>
     </div>
 
@@ -139,6 +141,13 @@
                 closeModal();
             }
         };
+
+        document.getElementById('new-search-btn').addEventListener('click', function () {
+            selectedEmojis.length = 0; 
+            emojiBox.innerHTML = "";   
+            limitMsg.textContent = ""; 
+        });
+
     </script>
 </body>
 </html>
