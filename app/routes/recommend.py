@@ -7,12 +7,16 @@ from app.models import User, Preference
 from app.utils import SECRET_KEY, ALGORITHM
 from app.schemas.recommend import EmojiInput
 from fastapi.security import OAuth2PasswordBearer
+import os
+from dotenv import load_dotenv
 
+load_dotenv()
 
 router = APIRouter()
 
-GROQ_API_KEY = "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"
-IMDB_API_KEY = "your_imdb_api_key"
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+OMDB_API_KEY = os.getenv("OMDB_API_KEY")
+print(GROQ_API_KEY)
 
 def get_db():
     db = SessionLocal()
@@ -53,18 +57,37 @@ def recommend_movie(data: EmojiInput, db: Session = Depends(get_db), user: User 
             "messages": [{"role": "user", "content": llama_prompt}]
         }
     )
-    
+    print("Status code:", groq_response.status_code)
+    print("Response body:", groq_response.text)
+
     if groq_response.status_code != 200:
         raise HTTPException(status_code=500, detail="Groq API error")
     
     film_title = groq_response.json()["choices"][0]["message"]["content"].strip()
 
-    # MOCKING IMDB RESPONSE
+    omdb_response = requests.get(
+        "http://www.omdbapi.com/",
+        params={
+            "apikey": OMDB_API_KEY,
+            "t": film_title,
+            "plot": "short",
+            "r": "json"
+        }
+    )
+    print(f"🔍 Searching OMDB for: {film_title}")
+    print(f"OMDB response: {omdb_response.json()}")
+
+    if omdb_response.status_code != 200 or omdb_response.json().get("Response") == "False":
+        raise HTTPException(status_code=404, detail="Movie not found in OMDB")
+
+    omdb_data = omdb_response.json()
+
     top_film = {
-        "title": film_title,
-        "description": "A fantastic movie based on your selected emojis!",
-        "image": "https://via.placeholder.com/150"
+        "title": omdb_data.get("Title", film_title),
+        "description": omdb_data.get("Plot", "No description available."),
+        "image": omdb_data.get("Poster", "https://via.placeholder.com/150")
     }
+
 
     new_pref = Preference(emojis=data.emojis, movie_title=top_film["title"], user_id=user.id)
     db.add(new_pref)

@@ -3,15 +3,19 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
-
+import os
 from app.routes.auth import router as auth_router
 from app.routes.recommend import router as recommend_router
 from app.database import engine
 from app import models
 
-load_dotenv()
+load_dotenv(override=True)
 app = FastAPI()
 
+
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+OMDB_API_KEY = os.getenv("OMDB_API_KEY")
+SECRET_KEY = os.getenv("SECRET_KEY")
 # Create tables
 models.Base.metadata.create_all(bind=engine)
 
