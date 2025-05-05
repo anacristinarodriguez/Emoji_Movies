@@ -6,10 +6,12 @@ document.addEventListener('DOMContentLoaded', function () {
     // Render login form
     function renderLoginForm() {
         formContent.innerHTML = `
-            <input id="username" type="text" placeholder="Username" class="input"/>
-            <input id="password" type="password" placeholder="Password" class="input"/>
-            <button id="login-btn" class="login-btn">Log In</button>
-            <p id="login-status"></p>
+            <div class="form-body">
+                <input id="username" type="text" placeholder="Username" class="input"/>
+                <input id="password" type="password" placeholder="Password" class="input"/>
+                <button id="login-btn" class="login-btn">LOGIN</button>
+                <p id="login-status"></p>
+            </div>
         `;
         attachLoginButton();
     }
@@ -17,11 +19,13 @@ document.addEventListener('DOMContentLoaded', function () {
     // Render register form
     function renderRegisterForm() {
         formContent.innerHTML = `
-            <input id="username" type="text" placeholder="Username" class="input"/>
-            <input id="email" type="email" placeholder="Email" class="input"/>
-            <input id="password" type="password" placeholder="Password" class="input"/>
-            <button id="register-btn" class="login-btn">Register</button>
-            <p id="login-status"></p>
+            <div class="form-body">
+                <input id="username" type="text" placeholder="Username" class="input"/>
+                <input id="email" type="email" placeholder="Email" class="input"/>
+                <input id="password" type="password" placeholder="Password" class="input"/>
+                <button id="register-btn" class="login-btn">REGISTER</button>
+                <p id="login-status"></p>
+            </div>
         `;
         attachRegisterButton();
     }
