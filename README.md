@@ -144,16 +144,3 @@ Emoji_Movies/
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Author
-
-Paula Rodriguez - [@prodriguezdiaz](https://github.com/prodriguezdiaz)
-
-## Acknowledgments
-
-- [Groq](https://www.groq.com/) - For the fast LLM API
-- [OMDB API](http://www.omdbapi.com/) - For movie data
-- [FastAPI](https://fastapi.tiangolo.com/) - For the web framework
